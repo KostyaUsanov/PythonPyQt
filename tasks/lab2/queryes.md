@@ -459,7 +459,7 @@ print(filtered_data.order_by("-name", "id"))  # упорядочивание п�
 from django.db.models import Count
 # Запрос, аннотирующий количество статей для каждого блога, 
 # при этом добавляется новая колонка number_of_entries для вывода
-entry = Blog.objects.annotate(number_of_entries=Count('entry')).values('name', 'number_of_entries')
+entry = Blog.objects.annotate(number_of_entries=Count('entries')).values('name', 'number_of_entries')
 print(entry)
 """
 <QuerySet [
@@ -485,7 +485,7 @@ print(entry)
 для создания псевдонимов для полей или связей в запросе, чтобы использовать их в других частях запроса.
 ```python
 from django.db.models import Count
-blogs = Blog.objects.alias(entries_new=Count('entry')).filter(entries_new__gt=4)
+blogs = Blog.objects.alias(number_of_entries=Count('entries')).filter(number_of_entries__gt=4)
 print(blogs)
 """
 <QuerySet [
@@ -497,8 +497,8 @@ print(blogs)
 ]>
 """
 
-## Выведет ошибку, так как поле entries не существует, виду различий между alias и annotate
-# blogs = Blog.objects.alias(entries_new=Count('entry')).filter(entries_new__gt=4).values('blog', 'entries_new')
+## Выведет ошибку, так как поле number_of_entries не существует, виду различий между alias и annotate
+# blogs = Blog.objects.alias(number_of_entries_new=Count('entries')).filter(number_of_entries__gt=4).values('blog', 'entries_new')
 ```
 
 ### aggregate()
