@@ -191,7 +191,7 @@ class AuthorProfile(models.Model):
 труд, то скопируем (`dumpdata`) данные из таблицы `db_train` в фикстуру, для этого выполним команду
 
 ```python
-python -Xutf8 manage.py dumpdata --indent 4 db_train > my_db_train.json
+python -Xutf8 manage.py dumpdata --indent 4 db_train -o my_db_train.json
 ```
 
 Можете посмотреть созданный файл, что скопировалась только таблица `db_train` с вашими данными. Флаг `-Xutf8` используется
